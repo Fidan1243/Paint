@@ -98,7 +98,7 @@ namespace WindowsFormsApp2
             {
                 rect.Color = FigureColor;
                 rect.Point = e.Location;
-                rect.Size = new Size(int.Parse(wtxt.Text), int.Parse(htxt.Text));
+                
                 if (fillbtn.Checked)
                 {
                     rect.IsFilled = true;
@@ -141,6 +141,15 @@ namespace WindowsFormsApp2
             {
                 FigureColor = colorDialog1.Color;
             }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (FigureFactory.GetFigure() is Rectangle rect)
+            {
+                rect.Size = new Size(e.X - rect.Point.X, e.Y - rect.Point.Y);
+            }
+            this.Refresh();
         }
     }
 }
